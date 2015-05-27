@@ -16,9 +16,20 @@ use yii\web\AssetBundle;
 class AjaxImageUploaderAsset extends AssetBundle
 {
     public $basePath = '@vendor/eugenejk/ajax-image-uploader';
+    public $sourcePath = '@vendor/eugenejk/ajax-image-uploader';
+    
     public $js = [
         'js/AjaxImageUploader.js'
     ];
     public $depends = [
     ];
+    
+    public function init()
+    {
+        parent::init();
+        $this->publishOptions['beforeCopy'] = function ($from, $to) {
+            $dirname = basename(dirname($from));
+            return $dirname === 'js';
+        };
+    }    
 }
