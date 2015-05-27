@@ -1,6 +1,6 @@
 {
     "name": "eugenejk/ajax-image-uploader",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "Ajax Image Uploader for Yii2",
     "license": "MIT",
     "authors": [
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "eugene\\AjaxImageUploader\\": ""
+            "eugenejk\\ajaxImageUploader\\": ""
         }
     }    
 }
