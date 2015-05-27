@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace eugenejk\assets;
+namespace eugenejk\ajaxImageUploader\assets;
 
 use yii\web\AssetBundle;
 
