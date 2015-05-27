@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "eugene\\AjaxImageUploader": ""
+            "eugene\\AjaxImageUploader\\": ""
         }
     }    
 }
