@@ -15,11 +15,11 @@ use yii\web\AssetBundle;
  */
 class AjaxImageUploaderAsset extends AssetBundle
 {
-    public $basePath = '@vendor/eugenejk/ajax-image-uploader';
-    public $sourcePath = '@vendor/eugenejk/ajax-image-uploader';
+    public $basePath = '@vendor/eugenejk/ajax-image-uploader/';
+    public $sourcePath = '@vendor/eugenejk/ajax-image-uploader/js/';
     
     public $js = [
-        'js/AjaxImageUploader.js'
+        'AjaxImageUploader.js'
     ];
     public $depends = [
     ];
