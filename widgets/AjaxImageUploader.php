@@ -5,6 +5,7 @@ use Yii;
 use yii\widgets\InputWidget;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use eugenejk\ajaxImageUploader\assets\AjaxImageUploaderAsset;
 
 /*
  * Ajax Image Uploader
@@ -123,14 +124,7 @@ class AjaxImageUploader extends InputWidget{
             });
 JS
         );
-        $view->registerCss(
-        <<<CSS
-            .project-upload-element{
-                margin-bottom: 10px;
-            }
-CSS
-        );
-        $view->registerJsFile(Url::to(['js/ImageUploader.js']));
+        AjaxImageUploaderAsset::register($view);
     }
 
     public function renderSection($name)
