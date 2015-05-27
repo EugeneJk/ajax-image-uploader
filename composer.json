@@ -1,5 +1,6 @@
 {
     "name": "eugenejk/ajax-image-uploader",
+    "version": "0.0.2",
     "description": "Ajax Image Uploader for Yii2",
     "license": "MIT",
     "authors": [
