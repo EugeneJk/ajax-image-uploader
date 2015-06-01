@@ -48,19 +48,24 @@ class AjaxImageUploader extends InputWidget{
     private $javascriptVariableName;
     
     /**
-     * Javascrpt variable name unique.
+     * Upload input id.
      */
     private $uploadInputId = 'uploadfile';
     
     /**
-     * Javascrpt variable name unique.
+     * Preview id.
      */
     private $previewId = 'image-preview';
     
     /**
+     * Notification section id.
+     */
+    private $notificationId = 'notification';
+    
+    /**
      * Layout for widget.
      */
-    public $layout = "{field}\n{image}\n{fileInput}\n{buttons}";
+    public $layout = "{field}\n{image}\n{fileInput}\n{buttons}\n{noification}";
     
     /**
      * Layout for buttons.
@@ -77,6 +82,8 @@ class AjaxImageUploader extends InputWidget{
         $this->javascriptVariableName = 'uploader_' . $uid;
         $this->previewId = 'image-preview_' . $uid;
         $this->uploadInputId = 'uploadfile_' . $uid;
+        $this->uploadInputId = 'uploadfile_' . $uid;
+        $this->notificationId = 'notification_' . $uid;
         if(empty($this->hiddenInputId)){
             $this->hiddenInputId  = 'w-aiu-hidden-field_' . $uid;
         }
@@ -120,6 +127,7 @@ class AjaxImageUploader extends InputWidget{
                 emptyImageLink:'{$this->emptyImageLink}',
                 actionUrl:'{$this->uploadActionUrl}',
                 formId: '{$this->activeFormId}',
+                notificationId: '{$this->notificationId}',
                 originalImage: '{$originalImage}'
             });
 JS
@@ -138,6 +146,8 @@ JS
                 return $this->renderFileInput();
             case '{buttons}':
                 return $this->renderButtons();
+            case '{noification}':
+                return $this->renderNotifications();
             default:
                 return false;
         }
@@ -167,6 +177,14 @@ JS
                 'accept'=>'image/*'
             ]),
             ['class' => 'project-upload-element text-center']
+        );
+    }
+    
+    public function renderNotifications(){
+        return Html::tag(
+            'div',
+            '',
+            ['id' => $this->notificationId,'class' => 'help-block']
         );
     }
     
