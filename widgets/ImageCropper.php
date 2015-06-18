@@ -100,10 +100,10 @@ class ImageCropper extends InputWidget{
         $view->registerJs(<<<JS
             {$this->javascriptVariableName} = new ImageCropper({
                 cropImageId : '{$this->cropImageId}',
-                thumbnailId : '{$this->previewId}',
+                thumbnailId : '{$this->hiddenInputId}',
                 url: '/image/image-crop',
                 applyButtonId: 'crop-apply-button',
-                thumbnailPreviewId: 'thumbnail-preview'
+                thumbnailPreviewId: '{$this->previewId}'
             });
 JS
         );
@@ -139,7 +139,7 @@ JS
     public function renderImage(){
         return Html::tag(
             'div',
-            Html::tag('img',['id' => $this->previewId, 'src' => $this->model->{$this->attribute}]),
+            Html::tag('img','',['id' => $this->previewId, 'src' => $this->model->{$this->attribute}]),
             ['class' => 'project-upload-element text-center']
         );
     }
