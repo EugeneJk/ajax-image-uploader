@@ -23,6 +23,15 @@ class ImageCropper extends InputWidget{
      */
     public $layout = "{field}\n{image}\n{buttons}\n{notification}";
 
+    /**
+     * @var integer crop width
+     */
+    public $cropWidth = 100;
+    
+    /**
+     * @var integer crop width
+     */
+    public $cropHeight = 100;
     
     /**
      * @var string mage crop url action
@@ -106,7 +115,10 @@ class ImageCropper extends InputWidget{
                 thumbnailId : '{$this->hiddenInputId}',
                 objectVariableName: '{$this->javascriptVariableName}',
                 url: '{$this->url}',
-                thumbnailPreviewId: '{$this->previewId}'
+                thumbnailPreviewId: '{$this->previewId}',
+                notificationAreaId: '{$this->notificationId}',
+                cropWidth : {$this->cropWidth},
+                cropHeight : {$this->cropHeight}
             });
 JS
         );

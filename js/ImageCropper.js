@@ -3,33 +3,22 @@ function ImageCropper(options)
     var self = this;
     this.iWidth = 0;
     this.iHeight = 0;
-    this.cropWidth = 132;
-    this.cropHeight = 164;
+    this.cropWidth = options.cropWidth;
+    this.cropHeight = options.cropHeight;
     this.cropX = 0;
     this.cropY = 0;
     var imageToCrop = document.getElementById(options.cropImageId);
     var thumnailField = document.getElementById(options.thumbnailId);
     var thumnailPreview = document.getElementById(options.thumbnailPreviewId);
+    var notificationArea = document.getElementById(options.notificationAreaId);
 
     var cropperOverlayId = 'cropper-overlay';
     var cropperImageId = 'cropper-image';
     var cropperOverlayBodyId = 'cropper-overlay-body';
     var cropperOverlayFooterId = 'cropper-overlay-footer';
     
-    
-    this.getParams = function(){
-        console.log("Изображение:" + imageToCrop.src);
-        console.log("Длина изображения:" + this.iWidth);
-        console.log("Высота изображения:" + this.iHeight);
-        console.log("Длина кропа:" + this.cropWidth);
-        console.log("Высота кропа:" + this.cropHeight);
-        console.log("X кропа:" + this.cropX);
-        console.log("Y кропа:" + this.cropY);
-        
-    };
-    
     this.activateCrop = function(){
-        if(imageToCrop.src !== ''){
+        if( $(imageToCrop).attr('src') !== ''){
             showCroppingLayout();
             cropresizer.getObject(cropperImageId).init({
                 cropWidth : this.cropWidth,
@@ -43,6 +32,10 @@ function ImageCropper(options)
                     self.cropY = this.cropTop - this.iTop;
                 }
             },1);
+        } else {
+            if(notificationArea) {
+                notificationArea.innerText = 'Please upload image first!';
+            }
         }
     };
 
@@ -74,7 +67,16 @@ function ImageCropper(options)
             thumnailPreview.src = thumnailField.value;
             self.close();
         } else {
-            console.log(data);
+            if(!document.getElementById('cropper-notification')){
+                $("<div/>",{
+                    id: 'cropper-notification',
+                    class:"alert alert-warning alert-dismissible",
+                    role:"alert"
+                }).css({
+                    width: "75%"
+                }).appendTo($("#" + cropperOverlayFooterId));
+            }
+            document.getElementById('cropper-notification').innerHTML = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> ' + data.error;
         }
     };
     
