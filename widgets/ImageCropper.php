@@ -101,8 +101,8 @@ class ImageCropper extends InputWidget{
             {$this->javascriptVariableName} = new ImageCropper({
                 cropImageId : '{$this->cropImageId}',
                 thumbnailId : '{$this->hiddenInputId}',
+                objectVariableName: '{$this->javascriptVariableName}',
                 url: '/image/image-crop',
-                applyButtonId: 'crop-apply-button',
                 thumbnailPreviewId: '{$this->previewId}'
             });
 JS

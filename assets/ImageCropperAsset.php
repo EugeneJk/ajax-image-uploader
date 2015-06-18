@@ -23,7 +23,8 @@ class ImageCropperAsset extends AssetBundle
         'fc-cropresizer/fc-cropresizer.js'
     ];
     public $css = [
-        'fc-cropresizer/fc-cropresizer.css'
+        'fc-cropresizer/fc-cropresizer.css',
+        'ImageCropper.css',
     ];
     public $depends = [
     ];
