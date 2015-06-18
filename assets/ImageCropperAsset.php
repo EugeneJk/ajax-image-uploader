@@ -13,13 +13,18 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AjaxImageUploaderAsset extends AssetBundle
+class ImageCropperAsset extends AssetBundle
 {
     public $basePath = '@vendor/eugenejk/ajax-image-uploader/';
     public $sourcePath = '@vendor/eugenejk/ajax-image-uploader/js/';
     
     public $js = [
-        'AjaxImageUploader.js'
+        'ImageCropper.js',
+        'fc-cropresizer/fc-cropresizer.js'
+    ];
+    public $css = [
+        'fc-cropresizer/fc-cropresizer.css',
+        'ImageCropper.css',
     ];
     public $depends = [
     ];
