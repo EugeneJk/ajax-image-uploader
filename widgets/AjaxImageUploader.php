@@ -50,12 +50,12 @@ class AjaxImageUploader extends InputWidget{
     /**
      * Upload input id.
      */
-    private $uploadInputId = 'uploadfile';
+    public $uploadInputId;
     
     /**
      * Preview id.
      */
-    private $previewId = 'image-preview';
+    public $previewId;
     
     /**
      * Notification section id.
@@ -65,7 +65,7 @@ class AjaxImageUploader extends InputWidget{
     /**
      * Layout for widget.
      */
-    public $layout = "{field}\n{image}\n{fileInput}\n{buttons}\n{noification}";
+    public $layout = "{field}\n{image}\n{fileInput}\n{buttons}\n{notification}";
     
     /**
      * Layout for buttons.
@@ -80,9 +80,12 @@ class AjaxImageUploader extends InputWidget{
         parent::init();
         $uid = uniqid();
         $this->javascriptVariableName = 'uploader_' . $uid;
-        $this->previewId = 'image-preview_' . $uid;
-        $this->uploadInputId = 'uploadfile_' . $uid;
-        $this->uploadInputId = 'uploadfile_' . $uid;
+        if(empty($this->previewId)){
+            $this->previewId = 'image-preview_' . $uid;
+        }
+        if(empty($this->uploadInputId)){
+            $this->uploadInputId = 'uploadfile_' . $uid;
+        }
         $this->notificationId = 'notification_' . $uid;
         if(empty($this->hiddenInputId)){
             $this->hiddenInputId  = 'w-aiu-hidden-field_' . $uid;
@@ -146,7 +149,7 @@ JS
                 return $this->renderFileInput();
             case '{buttons}':
                 return $this->renderButtons();
-            case '{noification}':
+            case '{notification}':
                 return $this->renderNotifications();
             default:
                 return false;

@@ -3,7 +3,7 @@ function ImageUploader (initObject) {
     this.input = document.getElementById(initObject.uploadInputId);
     this.field = document.getElementById(initObject.fieldId);
     this.preview = document.getElementById(initObject.previewId);
-    this.notitication = document.getElementById(initObject.notificationId);
+    this.notification = document.getElementById(initObject.notificationId);
     this.emptyImageLink = initObject.emptyImageLink;
     this.url = initObject.actionUrl;
     this.form = initObject.formId !== '' ? document.getElementById(initObject.formId) : null;
@@ -56,16 +56,16 @@ function ImageUploader (initObject) {
             this.field.value = data.filelink;
             this.changeImagePreview();
             
-            if(this.notitication.parentElement.classList.contains('form-group')){
-                this.notitication.parentElement.classList.remove('has-error');
-                this.notitication.parentElement.classList.add('has-success');
+            if(this.notification.parentElement.classList.contains('form-group')){
+                this.notification.parentElement.classList.remove('has-error');
+                this.notification.parentElement.classList.add('has-success');
             }
         } else {
-            this.notitication.innerText = data.error;
+            this.notification.innerText = data.error;
             
-            if(this.notitication.parentElement.classList.contains('form-group')){
-                this.notitication.parentElement.classList.remove('has-success');
-                this.notitication.parentElement.classList.add('has-error');
+            if(this.notification.parentElement.classList.contains('form-group')){
+                this.notification.parentElement.classList.remove('has-success');
+                this.notification.parentElement.classList.add('has-error');
             }
         }
     };
@@ -75,9 +75,9 @@ function ImageUploader (initObject) {
     
     this.clear = function(isRestoreOriginal){
         this.field.value = isRestoreOriginal ? this.originalImage :'';
-        if(this.notitication.parentElement.classList.contains('form-group')){
-            this.notitication.parentElement.classList.remove('has-success');
-            this.notitication.parentElement.classList.remove('has-error');
+        if(this.notification.parentElement.classList.contains('form-group')){
+            this.notification.parentElement.classList.remove('has-success');
+            this.notification.parentElement.classList.remove('has-error');
         }
         this.changeImagePreview();
     };
