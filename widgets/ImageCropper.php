@@ -22,6 +22,12 @@ class ImageCropper extends InputWidget{
      * @var string widget layout
      */
     public $layout = "{field}\n{image}\n{buttons}\n{notification}";
+
+    
+    /**
+     * @var string mage crop url action
+     */
+    public $url = "";
     
     /**
      * @var string hiddenInputId
@@ -59,9 +65,6 @@ class ImageCropper extends InputWidget{
         if(empty($this->previewId)){
             $this->previewId = 'image-preview_' . $uid;
         }
-//        if(empty($this->uploadInputId)){
-//            $this->uploadInputId = 'uploadfile_' . $uid;
-//        }
         $this->notificationId = 'notification_' . $uid;
         if(empty($this->hiddenInputId)){
             $this->hiddenInputId  = 'crop-hidden-field_' . $uid;
@@ -102,7 +105,7 @@ class ImageCropper extends InputWidget{
                 cropImageId : '{$this->cropImageId}',
                 thumbnailId : '{$this->hiddenInputId}',
                 objectVariableName: '{$this->javascriptVariableName}',
-                url: '/image/image-crop',
+                url: '{$this->url}',
                 thumbnailPreviewId: '{$this->previewId}'
             });
 JS
@@ -127,7 +130,7 @@ JS
                 return false;
         }
     }
-//    
+
     public function renderField(){
         if ($this->hasModel()) {
             return Html::activeHiddenInput($this->model, $this->attribute, ['id' => $this->hiddenInputId]);
@@ -143,17 +146,6 @@ JS
             ['class' => 'project-upload-element text-center']
         );
     }
-    
-//    public function renderFileInput(){
-//        return Html::tag(
-//            'div',
-//            Html::fileInput($this->uploadInputId, null,[
-//                'id'=> $this->uploadInputId,
-//                'accept'=>'image/*'
-//            ]),
-//            ['class' => 'project-upload-element text-center']
-//        );
-//    }
     
     public function renderNotifications(){
         return Html::tag(
@@ -177,40 +169,4 @@ BTN;
         
         return Html::tag('div', $content,[ 'class' => 'project-upload-element']);
     }
-//    
-//    public function renderButton($button)
-//    {
-//        switch ($button) {
-//            case '{upload}':
-//                $content = '<i class="glyphicon glyphicon-upload"></i>';
-//                $options = [
-//                    'class' => 'btn btn-primary',
-//                    'title' => 'Upload',
-//                    'onclick' => "{$this->javascriptVariableName}.upload();return false;",
-//                ];
-//                break;
-//            case '{clear}':
-//                $content = '<i class="glyphicon glyphicon glyphicon-trash"></i>';
-//                $options = [
-//                    'class' => 'btn btn-warning pull-right',
-//                    'title' => 'Clear',
-//                    'onclick' => "{$this->javascriptVariableName}.clear(false);return false;",
-//                ];
-//                break;
-//            case '{reset}':
-//                $content = '<i class="glyphicon glyphicon-picture"></i>';
-//                $options = [
-//                    'class' => 'btn btn-default pull-right',
-//                    'title' => 'Original',
-//                    'onclick' => "{$this->javascriptVariableName}.clear(true);return false;",
-//                ];
-//                break;
-//            default:
-//                $content = '';
-//                $options = [];
-//                break;
-//        }
-//        
-//        return Html::button($content, $options);
-//    }
 }
