@@ -53,6 +53,6 @@ and open the template in the editor.
     position: fixed;
 }
 
-.crop-btn-clear{
+.crop-btn-clear, .crop-btn-reset{
     float: right;
 }

@@ -26,7 +26,7 @@ class ImageCropper extends InputWidget{
     /**
      * @var string widget layout
      */
-    public $buttonsLayout = "{init}\n{clear}";
+    public $buttonsLayout = "{init}\n{clear}\n{reset}";
 
     /**
      * @var integer crop width
@@ -188,7 +188,7 @@ JS
             case '{init}':
                 $content = '<i class="glyphicon glyphicon-file"></i>';
                 $options = [
-                    'class' => 'btn btn-default crop-btn-init',
+                    'class' => 'btn btn-primary crop-btn-init',
                     'title' => 'Create',
                     'onclick' => "{$this->javascriptVariableName}.activateCrop();return false;",
                 ];
@@ -199,6 +199,14 @@ JS
                     'class' => 'btn btn-warning crop-btn-clear',
                     'title' => 'Clear',
                     'onclick' => "{$this->javascriptVariableName}.clear(false);return false;",
+                ];
+                break;
+            case '{reset}':
+                $content = '<i class="glyphicon glyphicon-picture"></i>';
+                $options = [
+                    'class' => 'btn btn-default crop-btn-reset',
+                    'title' => 'Original',
+                    'onclick' => "{$this->javascriptVariableName}.clear(true);return false;",
                 ];
                 break;
             default:

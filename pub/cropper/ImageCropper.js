@@ -11,6 +11,7 @@ function ImageCropper(options)
     var thumnailField = document.getElementById(options.thumbnailId);
     var thumnailPreview = document.getElementById(options.thumbnailPreviewId);
     var notificationArea = document.getElementById(options.notificationAreaId);
+    var originalThumb = thumnailField.value;
 
     var cropperOverlayId = 'cropper-overlay';
     var cropperImageId = 'cropper-image';
@@ -135,4 +136,22 @@ function ImageCropper(options)
         $('#cropDivId_' + cropperImageId).remove();
     };
     
+    this.clear = function(isRestoreOriginal){
+        this.field.value = isRestoreOriginal ? this.originalImage :'';
+        if(this.notification.parentElement.classList.contains('form-group')){
+            this.notification.parentElement.classList.remove('has-success');
+            this.notification.parentElement.classList.remove('has-error');
+        }
+        this.changeImagePreview();
+    };
+    this.clear = function(isRestoreOriginal){
+        if(isRestoreOriginal){
+            thumnailField.value = originalThumb;
+            thumnailPreview.src = originalThumb;
+        } else {
+            thumnailField.value = '';
+            thumnailPreview.src = '';
+            
+        }
+    };
 }
