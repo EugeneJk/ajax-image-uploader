@@ -22,6 +22,11 @@ class ImageCropper extends InputWidget{
      * @var string widget layout
      */
     public $layout = "{field}\n{image}\n{buttons}\n{notification}";
+    
+    /**
+     * @var string widget layout
+     */
+    public $buttonsLayout = "{init}\n{clear}";
 
     /**
      * @var integer crop width
@@ -168,11 +173,6 @@ JS
     }
     
     public function renderButtons(){
-        return <<<BTN
-        <button class="btn btn-default" onclick="{$this->javascriptVariableName}.activateCrop();return false;">Create Thumbnail</button>
-        <button id="crop-apply-button" class="btn btn-primary hidden" onclick="{$this->javascriptVariableName}.crop();return false;">Apply</button>
-BTN;
-        
         $content = preg_replace_callback("/{\\w+}/", function ($matches) {
             $content = $this->renderButton($matches[0]);
 
@@ -181,4 +181,33 @@ BTN;
         
         return Html::tag('div', $content,[ 'class' => 'project-upload-element']);
     }
+    
+    public function renderButton($button)
+    {
+        switch ($button) {
+            case '{init}':
+                $content = '<i class="glyphicon glyphicon-file"></i>';
+                $options = [
+                    'class' => 'btn btn-default crop-btn-init',
+                    'title' => 'Create',
+                    'onclick' => "{$this->javascriptVariableName}.activateCrop();return false;",
+                ];
+                break;
+            case '{clear}':
+                $content = '<i class="glyphicon glyphicon glyphicon-trash"></i>';
+                $options = [
+                    'class' => 'btn btn-warning crop-btn-clear',
+                    'title' => 'Clear',
+                    'onclick' => "{$this->javascriptVariableName}.clear(false);return false;",
+                ];
+                break;
+            default:
+                $content = '';
+                $options = [];
+                break;
+        }
+        
+        return Html::button($content, $options);
+    }
+    
 }
