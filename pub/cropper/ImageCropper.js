@@ -11,7 +11,7 @@ function ImageCropper(options)
     var thumnailField = document.getElementById(options.thumbnailId);
     var thumnailPreview = document.getElementById(options.thumbnailPreviewId);
     var notificationArea = document.getElementById(options.notificationAreaId);
-    var originalThumb = thumnailField.value;
+    var originalThumb = null;
 
     var cropperOverlayId = 'cropper-overlay';
     var cropperImageId = 'cropper-image';
@@ -145,6 +145,9 @@ function ImageCropper(options)
         this.changeImagePreview();
     };
     this.clear = function(isRestoreOriginal){
+        if(originalThumb === null){
+           originalThumb = thumnailField.value;
+        }
         if(isRestoreOriginal){
             thumnailField.value = originalThumb;
             thumnailPreview.src = originalThumb;
