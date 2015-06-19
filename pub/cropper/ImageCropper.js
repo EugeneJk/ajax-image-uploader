@@ -18,6 +18,12 @@ function ImageCropper(options)
     var cropperOverlayFooterId = 'cropper-overlay-footer';
     
     this.activateCrop = function(){
+        if(notificationArea) {
+            notificationArea.innerText = '';
+            if(notificationArea.parentElement.classList.contains('form-group')){
+                notificationArea.parentElement.classList.remove('has-error');
+            }
+        }
         if( $(imageToCrop).attr('src') !== ''){
             showCroppingLayout();
             cropresizer.getObject(cropperImageId).init({
@@ -35,6 +41,9 @@ function ImageCropper(options)
         } else {
             if(notificationArea) {
                 notificationArea.innerText = 'Please upload image first!';
+                if(notificationArea.parentElement.classList.contains('form-group')){
+                    notificationArea.parentElement.classList.add('has-error');
+                }
             }
         }
     };

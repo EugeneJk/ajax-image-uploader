@@ -16,7 +16,7 @@ use yii\web\AssetBundle;
 class ImageCropperAsset extends AssetBundle
 {
     public $basePath = '@vendor/eugenejk/ajax-image-uploader/';
-    public $sourcePath = '@vendor/eugenejk/ajax-image-uploader/js/';
+    public $sourcePath = '@vendor/eugenejk/ajax-image-uploader/pub/cropper';
     
     public $js = [
         'ImageCropper.js',

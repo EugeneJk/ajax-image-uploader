@@ -52,3 +52,7 @@ and open the template in the editor.
     z-index: 1000002;
     position: fixed;
 }
+
+.crop-btn-clear{
+    float: right;
+}
