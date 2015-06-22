@@ -8,6 +8,7 @@ function ImageUploader (initObject) {
     this.url = initObject.actionUrl;
     this.form = initObject.formId !== '' ? document.getElementById(initObject.formId) : null;
     this.originalImage = initObject.originalImage;
+    this.afterSuccessUpload = initObject.afterSuccessUpload;
 
     var uploader;
     var initUploader = function(){
@@ -61,6 +62,7 @@ function ImageUploader (initObject) {
                 this.notification.parentElement.classList.remove('has-error');
                 this.notification.parentElement.classList.add('has-success');
             }
+            this.afterSuccessUpload();
         } else {
             this.notification.innerHTML = data.error;
             
