@@ -61,7 +61,7 @@ class ImageCropper extends InputWidget{
     /**
      * javascriptVariableName
      */
-    private $javascriptVariableName;
+    public $javascriptVariableName;
     
     /**
      * Notification section id.
@@ -75,7 +75,9 @@ class ImageCropper extends InputWidget{
     {
         parent::init();
         $uid = uniqid();
-        $this->javascriptVariableName = 'cropper_' . $uid;
+        if(empty($this->javascriptVariableName)){
+            $this->javascriptVariableName = 'cropper_' . $uid;
+        }
         if(empty($this->previewId)){
             $this->previewId = 'image-preview_' . $uid;
         }

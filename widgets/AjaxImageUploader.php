@@ -58,6 +58,11 @@ class AjaxImageUploader extends InputWidget{
     public $previewId;
     
     /**
+     * @var array Javascript code that will be executed after successfull execution;
+     */
+    public $afterSuccessUpload = [];
+    
+    /**
      * Notification section id.
      */
     private $notificationId = 'notification';
@@ -120,6 +125,7 @@ class AjaxImageUploader extends InputWidget{
      */
     private function registerClientScript(){
         $originalImage = $this->model->{$this->attribute};
+        $afterSuccessUpload = !empty($this->afterSuccessUpload) ?  implode(";\n", $this->afterSuccessUpload) . ';' : 'console.log("afteraction")';
         $view = $this->getView();
         $view->registerJs(
         <<<JS
@@ -131,7 +137,10 @@ class AjaxImageUploader extends InputWidget{
                 actionUrl:'{$this->uploadActionUrl}',
                 formId: '{$this->activeFormId}',
                 notificationId: '{$this->notificationId}',
-                originalImage: '{$originalImage}'
+                originalImage: '{$originalImage}',
+                afterSuccessUpload: function(){
+                    {$afterSuccessUpload}
+                } 
             });
 JS
         );
