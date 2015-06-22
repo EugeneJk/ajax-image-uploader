@@ -53,6 +53,7 @@ function ImageUploader (initObject) {
 
     this.success = function(data){
         if(data.error === undefined){
+            this.notification.innerHTML = '';
             this.field.value = data.filelink;
             this.changeImagePreview();
             
@@ -61,7 +62,7 @@ function ImageUploader (initObject) {
                 this.notification.parentElement.classList.add('has-success');
             }
         } else {
-            this.notification.innerText = data.error;
+            this.notification.innerHTML = data.error;
             
             if(this.notification.parentElement.classList.contains('form-group')){
                 this.notification.parentElement.classList.remove('has-success');
