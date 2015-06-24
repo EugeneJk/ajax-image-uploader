@@ -26,12 +26,14 @@ function ImageUploader (initObject) {
     };
 
     this.changeImagePreview = function(){
+        this.preview.style.display = '';
         if(this.field.value !== ''){
             this.preview.src = this.field.value;
-            this.preview.style.display = '';
         }else{
             this.preview.src = this.emptyImageLink;
-            this.preview.style.display = 'none';
+            if(this.emptyImageLink === ''){
+                this.preview.style.display = 'none';
+            }
         }
     };
 
