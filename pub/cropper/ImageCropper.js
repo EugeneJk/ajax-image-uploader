@@ -20,7 +20,7 @@ function ImageCropper(options)
     
     this.activateCrop = function(){
         if(notificationArea) {
-            notificationArea.innerText = '';
+            notificationArea.innerHTML = '';
             if(notificationArea.parentElement.classList.contains('form-group')){
                 notificationArea.parentElement.classList.remove('has-error');
             }
@@ -41,7 +41,7 @@ function ImageCropper(options)
             },1);
         } else {
             if(notificationArea) {
-                notificationArea.innerText = 'Please upload image first!';
+                notificationArea.innerHTML = 'Please upload image first!';
                 if(notificationArea.parentElement.classList.contains('form-group')){
                     notificationArea.parentElement.classList.add('has-error');
                 }
@@ -75,6 +75,7 @@ function ImageCropper(options)
         if(data.file){
             thumnailField.value = data.file;
             thumnailPreview.src = thumnailField.value;
+            thumnailPreview.style.display = '';
             self.close();
         } else {
             if(!document.getElementById('cropper-notification')){
@@ -146,15 +147,16 @@ function ImageCropper(options)
     };
     this.clear = function(isRestoreOriginal){
         if(originalThumb === null){
-           originalThumb = thumnailField.value;
+            originalThumb = thumnailField.value;
         }
         if(isRestoreOriginal){
             thumnailField.value = originalThumb;
             thumnailPreview.src = originalThumb;
+            thumnailPreview.style.display = '';
         } else {
             thumnailField.value = '';
             thumnailPreview.src = '';
-            
+            thumnailPreview.style.display = 'none';
         }
     };
 }

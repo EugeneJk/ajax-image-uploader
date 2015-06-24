@@ -26,7 +26,13 @@ function ImageUploader (initObject) {
     };
 
     this.changeImagePreview = function(){
-        this.preview.src = (this.field.value !== '') ? this.field.value : this.emptyImageLink;
+        if(this.field.value !== ''){
+            this.preview.src = this.field.value;
+            this.preview.style.display = '';
+        }else{
+            this.preview.src = this.emptyImageLink;
+            this.preview.style.display = 'none';
+        }
     };
 
     this.upload = function(){
