@@ -161,7 +161,7 @@ JS
     public function renderImage(){
         return Html::tag(
             'div',
-            Html::tag('img','',['id' => $this->previewId, 'src' => $this->model->{$this->attribute}]),
+            Html::img($this->model->{$this->attribute},['id' => $this->previewId]),
             ['class' => 'project-upload-element text-center']
         );
     }
