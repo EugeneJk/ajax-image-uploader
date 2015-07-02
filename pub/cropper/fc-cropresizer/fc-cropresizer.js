@@ -283,7 +283,7 @@ cropresizer.fc.prototype = {
 	resizeMoveHandler : function(evt) {
 		if (!this.resizeMoveState) return;
 		evt = evt || window.event;
-		var nW, nH;
+		var hW, hH;
 		hW = this.iBuferWidth + this.defPosition(evt).x - this.X0;
 		hH = this.iBuferHeight + this.defPosition(evt).y - this.Y0;
 		if (this.iRate < 1) {
@@ -299,19 +299,33 @@ cropresizer.fc.prototype = {
 		if (hW > this.iMaxWidth) hW = this.iMaxWidth;
 		if (hH <= this.iMinHeight) hH = this.iMinHeight;
 		if (hH > this.iMaxHeight) hH = this.iMaxHeight;
-		
+        
 		if (this.iRate < 1) {
-			this.image.style.width = hW + "px";
-			this.image.style.height = (this.saveProportions ? hW / this.iRate : hH) + "px";
+//			this.image.style.width = hW + "px";
+//			this.image.style.height = (this.saveProportions ? hW / this.iRate : hH) + "px";
+            hH = this.saveProportions ? hW / this.iRate : hH;
+            if(hH < this.iMinHeight){
+                hH = this.iMinHeight;
+                hW = this.saveProportions ? hH * this.iRate : hW;
+            }
 		} else {
-			this.image.style.height = hH + "px";
-			this.image.style.width = (this.saveProportions ? this.iRate * hH : hW) + "px";
+//			this.image.style.height = hH + "px";
+//			this.image.style.width = (this.saveProportions ? this.iRate * hH : hW) + "px";
+            hW = this.saveProportions ? this.iRate * hH : hW;
+            if(hW < this.iMinWidth){
+                hW = this.iMinWidth;
+                hH = this.saveProportions ? hW / this.iRate : hH;
+            }
 		}
+        
+        this.image.style.width = hW + "px";
+        this.image.style.height = hH + "px";
 		
 		var crop_dY = this.resizeTop - this.cropTop - this.cropHeight;
 		var crop_dX = this.resizeLeft - this.cropLeft - this.cropWidth;
 		if (crop_dY < 0) this.crop.style.top = (this.cropTop + crop_dY) + "px";
 		if (crop_dX < 0) this.crop.style.left = (this.cropLeft + crop_dX) + "px";
 		this.setResizeVars();
+
 	}
 }
