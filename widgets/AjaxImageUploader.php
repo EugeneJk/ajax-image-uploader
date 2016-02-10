@@ -127,7 +127,7 @@ class AjaxImageUploader extends InputWidget{
         if($this->hasModel()){
             $originalImage = $this->model->{$this->attribute};
         }   else {
-            $this->value;
+            $originalImage = $this->value;
         }
         $afterSuccessUpload = !empty($this->afterSuccessUpload) ?  implode(";\n", $this->afterSuccessUpload) . ';' : '';
         $view = $this->getView();
