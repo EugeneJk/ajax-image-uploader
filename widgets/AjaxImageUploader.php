@@ -124,7 +124,11 @@ class AjaxImageUploader extends InputWidget{
      * Registers javascript and css
      */
     private function registerClientScript(){
-        $originalImage = $this->model->{$this->attribute};
+        if($this->hasModel()){
+            $originalImage = $this->model->{$this->attribute};
+        }   else {
+            $this->value;
+        }
         $afterSuccessUpload = !empty($this->afterSuccessUpload) ?  implode(";\n", $this->afterSuccessUpload) . ';' : '';
         $view = $this->getView();
         $view->registerJs(
