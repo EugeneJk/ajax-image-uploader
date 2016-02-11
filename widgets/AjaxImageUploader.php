@@ -173,7 +173,7 @@ JS
         if ($this->hasModel()) {
             return Html::activeHiddenInput($this->model, $this->attribute, ['id' => $this->hiddenInputId]);
         } else {
-            return Html::hiddenInput($this->name, $this->value, $this->options);
+            return Html::hiddenInput($this->name, $this->value, ['id' => $this->hiddenInputId]);
         }
     }
     
